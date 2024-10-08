@@ -1,0 +1,46 @@
+﻿@page "/"
+<div class="main">
+    <div class="content px-4">
+        <label>
+            <input type="checkbox" @bind="IncludeCapitalLetters" />
+            Главни букви (А)
+        </label>
+        &nbsp;
+        <label>
+            <input type="checkbox" @bind="IncludeSmallLetters" />
+            Малки букви (а)
+        </label>
+        &nbsp;
+        <label>
+            <input type="checkbox" @bind="IncludeLetterPairs" />
+            Двойки букви (Аa)
+        </label>
+        &nbsp;
+        <label>
+            <input type="checkbox" @bind="IncludeWords" />
+            Думи
+        </label>
+        &nbsp;
+        <label>
+            <input type="checkbox" @bind="IncludeSentences" />
+            Изречения
+        </label>
+        &nbsp;
+        <label>
+            <input type="checkbox" @bind="CapitalizeWords" />
+            Направи думите само с главни букви
+        </label>
+
+        <br />
+
+        <button @onclick="SetText">Още едно</button>
+
+        <br />
+        <br />
+        <br />
+        @if (CurrentText is not null)
+        {
+            <h1 style="font-size:4em">@CurrentText</h1>
+        }
+    </div>
+</div>
