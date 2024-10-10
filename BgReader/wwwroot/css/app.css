@@ -62,3 +62,16 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+@font-face {
+    font-family: perun;
+    src: url('/css/fonts/Perun/Perun.otf');
+}
+
+.font-bg {
+    font-family: perun;
+}
+
+.font-ru {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}

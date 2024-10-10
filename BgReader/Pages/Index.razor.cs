@@ -10,11 +10,19 @@ public partial class Index : ComponentBase
     private bool IncludeWords { get; set; } = true;
     private bool IncludeSentences { get; set; } = true;
     private bool CapitalizeWords { get; set; } = false;
+    private string CyrillicStyle { get; set; } = "случайна";
+    private string FontFamilyClass { get; set; } = "";
 
     private string? CurrentText { get; set; } = null!;
 
     public void SetText()
     {
+        FontFamilyClass = CyrillicStyle switch
+        {
+            "българска" => "font-bg",
+            "руска" => "font-ru",
+            _ => Random.Shared.Next() % 2 == 0 ? "font-bg" : "font-ru"
+        };
 
         IEnumerable<string> texts = [];
         int itemsCount = 0;
@@ -41,7 +49,7 @@ public partial class Index : ComponentBase
         {
             IEnumerable<string> wordsToInclude = Words;
 
-            if(CapitalizeWords)
+            if (CapitalizeWords)
             {
                 wordsToInclude = wordsToInclude.Select(w => w.ToUpper());
             }
@@ -50,7 +58,7 @@ public partial class Index : ComponentBase
             itemsCount += Words.Length;
         }
 
-        if(IncludeSentences)
+        if (IncludeSentences)
         {
             IEnumerable<string> sentencesToInclude = Sentences;
 
@@ -63,7 +71,7 @@ public partial class Index : ComponentBase
             itemsCount += Sentences.Length;
         }
 
-        if(itemsCount == 0)
+        if (itemsCount == 0)
         {
             CurrentText = null!;
         }
@@ -79,10 +87,10 @@ public partial class Index : ComponentBase
     private string[] LetterPairs { get; } = ["Аа", "Бб", "Вв", "Гг", "Дд", "Ее", "Жж", "Зз", "Ии", "Йй", "Кк", "Лл", "Мм", "Нн", "Оо", "Пп", "Рр", "Сс", "Тт", "Уу", "Фф", "Хх", "Цц", "Чч", "Шш", "Щщ", "Ъъ", "ь", "Юю", "Яя"];
     private string[] Words { get; } =
     [
-        "баба", "дядо", "татко", "мама", "кака", "чичо", "леля", "топка", "котка", "куче", "кон", "риба", "пате", "прасе", "вода",
-        "сок", "хляб", "песен", "баня", "вана", "език", "пръст", "къща", "таван", "ряпа", "домат", "ябълка", "круша", "банан",
-        "чаша", "нож", "яке", "елен", "сърна", "муха", "бор", "пор", "тор", "ток", "сом", "фон", "тон", "град", "село", "рог", "едно",
-        "еднорог", "сам", "бар", "маса", "поток", "лимон", "перде", "сняг", "кола", "лов", "пън", "рак", "мир", "нос", "кал", "боб"
+        "агне", "баба", "банан", "баня", "бар", "боб", "бор", "вода", "вана", "град", "дете", "дядо", "домат", "едно", "еднорог", "елен", "език", "жаба",
+        "зъб", "игла", "кака", "кал", "кола", "кон", "котка", "круша", "куче", "къща", "леля", "лимон", "лов", "мама", "маса", "мир", "муха", "нива", "нож",
+        "нос", "оса", "пате", "перде", "песен", "пор", "поток", "прасе", "пръст", "риба", "рог", "ряпа", "сам", "село", "сняг", "сок", "сом", "сърна", "таван",
+        "татко", "ток", "тон", "топка", "тор", "ухо", "хляб", "чаша", "чичо", "шамар", "щипя", "ютия", "ябълка", "яке"
     ];
     private string[] Sentences { get; } =
     [
@@ -121,6 +129,8 @@ public partial class Index : ComponentBase
         "Вълк гони еднорог",
         "Момиче храни еднорог",
         "Аз съм прасе",
-        "Аз ям мусака"
+        "Аз ям мусака",
+        "Тати има брада",
+        "Мама ме щипе"
     ];
 }

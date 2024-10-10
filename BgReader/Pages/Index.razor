@@ -31,6 +31,14 @@
             Направи думите само с главни букви
         </label>
 
+        &nbsp;
+        Вид кирилица
+        <select @bind="CyrillicStyle">
+            <option value="случайна" selected="selected">случайна</option>
+            <option value="българска">българска</option>
+            <option value="руска">руска</option>
+        </select>
+
         <br />
 
         <button @onclick="SetText">Още едно</button>
@@ -40,7 +48,7 @@
         <br />
         @if (CurrentText is not null)
         {
-            <h1 style="font-size:4em">@CurrentText</h1>
+            <h1 class="@FontFamilyClass" style="font-size:4em">@CurrentText</h1>
         }
     </div>
 </div>
